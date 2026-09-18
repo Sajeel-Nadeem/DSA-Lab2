@@ -2,7 +2,6 @@
 #include <cassert>
 using namespace std;
 
-// Implemented basic logic
 bool isSorted(const int* arr, const int size) {
 	for (int i = 0; i < size - 1; i++) {
 		if (arr[i] > arr[i + 1]) {
@@ -27,10 +26,28 @@ void testDuplicateValues() {
 	assert(isSorted(arr, 5) == true);
 }
 
+void testSingleElement() {
+	int arr[] = { 42 };
+	assert(isSorted(arr, 1) == true);
+}
+
+void testDescendingArray() {
+	int arr[] = { 5, 4, 3, 2, 1 };
+	assert(isSorted(arr, 5) == false);
+}
+
+void testNegativeValues() {
+	int arr[] = { -5, -2, 0, 3 };
+	assert(isSorted(arr, 4) == true);
+}
+
 int main() {
 	testSortedArray();
 	testUnsortedArray();
 	testDuplicateValues();
-	cout << "Core tests passed." << endl;
+	testSingleElement();
+	testDescendingArray();
+	testNegativeValues();
+	cout << "Edge case tests added." << endl;
 	return 0;
 }
