@@ -2,7 +2,12 @@
 #include <cassert>
 using namespace std;
 
+// Final implementation with edge case handling
 bool isSorted(const int* arr, const int size) {
+	if (size <= 1) {
+		return true;
+	}
+
 	for (int i = 0; i < size - 1; i++) {
 		if (arr[i] > arr[i + 1]) {
 			return false;
@@ -41,6 +46,16 @@ void testNegativeValues() {
 	assert(isSorted(arr, 4) == true);
 }
 
+void testAllIdenticalElements() {
+	int arr[] = { 7, 7, 7, 7 };
+	assert(isSorted(arr, 4) == true);
+}
+
+void testEmptyArray() {
+	int* arr = nullptr;
+	assert(isSorted(arr, 0) == true);
+}
+
 int main() {
 	testSortedArray();
 	testUnsortedArray();
@@ -48,6 +63,9 @@ int main() {
 	testSingleElement();
 	testDescendingArray();
 	testNegativeValues();
-	cout << "Edge case tests added." << endl;
+	testAllIdenticalElements();
+	testEmptyArray();
+
+	cout << "All assertions passed! The array sorting logic is verified." << endl;
 	return 0;
 }
